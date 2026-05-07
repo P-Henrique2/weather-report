@@ -12,7 +12,6 @@ searchBtn.addEventListener('click', () => {
   }
 });
 
-// Fetch current weather
 async function getWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   
@@ -43,7 +42,6 @@ async function getWeather(city) {
   }
 }
 
-// Fetch 5-day forecast
 async function getForecast(city) {
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
 
@@ -56,7 +54,6 @@ async function getForecast(city) {
       return;
     }
 
-    // OpenWeatherMap gives 3-hour intervals; we'll pick 12:00 PM each day
     const forecastByDay = {};
     data.list.forEach(item => {
       if (item.dt_txt.includes("12:00:00")) {
@@ -84,7 +81,6 @@ async function getForecast(city) {
   }
 }
 
-// Dynamic background for current weather
 function setBackground(condition) {
   let color = '#e0f7fa';
   if (condition === 'Clear') color = '#f7d794';
@@ -96,7 +92,6 @@ function setBackground(condition) {
   document.body.style.backgroundColor = color;
 }
 
-// Dynamic color for forecast cards
 function getBgColor(condition) {
   if (condition === 'Clear') return '#f7b731';
   else if (condition === 'Clouds') return '#7f8fa6';
